@@ -1,0 +1,5 @@
+C:\DotNetProjects\UnityMonoTogether\UnityMonoTogether\obj\Debug\netstandard2.1\UnityMonoTogether.csproj.AssemblyReference.cache
+C:\DotNetProjects\UnityMonoTogether\UnityMonoTogether\obj\Debug\netstandard2.1\UnityMonoTogether.GeneratedMSBuildEditorConfig.editorconfig
+C:\DotNetProjects\UnityMonoTogether\UnityMonoTogether\obj\Debug\netstandard2.1\UnityMonoTogether.AssemblyInfoInputs.cache
+C:\DotNetProjects\UnityMonoTogether\UnityMonoTogether\obj\Debug\netstandard2.1\UnityMonoTogether.AssemblyInfo.cs
+C:\DotNetProjects\UnityMonoTogether\UnityMonoTogether\obj\Debug\netstandard2.1\UnityMonoTogether.csproj.CoreCompileInputs.cache
