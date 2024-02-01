@@ -35,9 +35,13 @@ namespace UnityMonoTogether
         {
             GUILayout.BeginHorizontal();
             _scrollVector = GUILayout.BeginScrollView(_scrollVector);
+
             foreach (var objName in _sceneRoot)
                 if (GUILayout.Button(objName))
                     _selectedTransform = GameObject.Find(objName).transform;
+
+            GUILayout.EndScrollView();
+            GUILayout.EndHorizontal();
         }
     }
 }
