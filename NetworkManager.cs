@@ -79,12 +79,12 @@ namespace UnityMonoTogether
         private void SceneLoadedCallback(Scene scene, LoadSceneMode loadSceneMode)
         {
             _playerTransform = null;
-
+            
         }
 
         private void LoadSceneRootNames()
         {
-
+            
         }
 
         private const string IpAddressPHolder = "Ip address";
