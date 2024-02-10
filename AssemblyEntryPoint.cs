@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace UnityMonoTogether
 {
-    public static class AssemblyEntryPoint
+    public static class MonoTogether
     {
-        private static void Initialize()
+        public static void Initialize()
         {
             var managerObject = new GameObject(nameof(NetworkManager));
-            Object.DontDestroyOnLoad(managerObject);
+            UnityEngine.Object.DontDestroyOnLoad(managerObject);
             var networkManager = managerObject.AddComponent<NetworkManager>();
+            networkManager.OnLoad();
         }
     }
 }

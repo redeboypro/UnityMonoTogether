@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Net;
+using UnityEngine;
 using System.Threading.Tasks;
 
 namespace UnityMonoTogether
@@ -23,15 +24,12 @@ namespace UnityMonoTogether
 
         public void Connect(string address, int port)
         {
-            _serverEndPoint = new IPEndPoint(IPAddress.Parse(address), port);
             _isConnected = true;
-
-            var localEndpoint = new IPEndPoint(IPAddress.Any, 0);
-            _udpClient.Client.Bind(localEndpoint);
+            _serverEndPoint = new IPEndPoint(IPAddress.Parse(address), port);
+            _udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, 0));
 
             SendPacket();
-
-            Task.Run(ReceivePacketsCallback);
+            ReceivePackets();
         }
 
         public bool IsConnected
@@ -89,6 +87,11 @@ namespace UnityMonoTogether
             _packet.WriteSingle(data);
         }
 
+        public void WriteVectorToBuffer(Vector3 data)
+        {
+            _packet.WriteVector(data);
+        }
+
         public void WriteStringToBuffer(string? data)
         {
             _packet.WriteString(data);
@@ -136,18 +139,21 @@ namespace UnityMonoTogether
             _udpClient.Close();
         }
 
-        private void ReceivePacketsCallback()
+        private async void ReceivePackets()
         {
-            while (_isConnected)
+            await Task.Run(() =>
             {
-                var serverEndpoint = new IPEndPoint(IPAddress.Any, 0);
-                var receiveBytes = _udpClient.Receive(ref serverEndpoint);
+                while (_isConnected)
+                {
+                    var serverEndpoint = new IPEndPoint(IPAddress.Any, 0);
+                    var receivedBytes = _udpClient.Receive(ref serverEndpoint);
 
-                using var packet = new NetworkPacket();
-                packet.WriteBytes(receiveBytes);
+                    using var packet = new NetworkPacket();
+                    packet.WriteBytes(receivedBytes);
 
-                ReceivePacket?.Invoke(packet);
-            }
+                    ReceivePacket?.Invoke(packet);
+                }
+            });
         }
 
         ~NetworkClient()

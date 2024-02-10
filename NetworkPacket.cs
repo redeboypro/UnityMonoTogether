@@ -282,6 +282,13 @@ namespace UnityMonoTogether
             _byteBuffer.AddRange(bytes);
         }
 
+        public void WriteVector(Vector3 data)
+        {
+            WriteSingle(data.x);
+            WriteSingle(data.y);
+            WriteSingle(data.z);
+        }
+
         public void WriteString(string? data)
         {
             if (data == null)

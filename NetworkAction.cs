@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UnityMonoTogether
+﻿namespace UnityMonoTogether
 {
     public enum NetworkAction : byte
     {
